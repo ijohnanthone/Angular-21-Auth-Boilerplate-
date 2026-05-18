@@ -243,12 +243,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok(basicDetails(account));
         }
 
-        // helper functions are usually found at the end of this file 
-        // (Note: images end at line 243, ensure basicDetails, generateJwtToken, etc. are defined in your project)
-    }
-}
-
-function createAccount() {
+        function createAccount() {
             if (!isAuthorized(Role.Admin)) return unauthorized();
 
             const account = body;

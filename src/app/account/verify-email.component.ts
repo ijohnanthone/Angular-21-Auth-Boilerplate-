@@ -4,15 +4,16 @@ import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
 
-enum EmailStatus {
-    Verifying,
-    Failed
+enum TokenStatus {
+    Validating,
+    Valid,
+    Invalid
 }
 
 @Component({ templateUrl: 'verify-email.component.html', standalone: false })
 export class VerifyEmailComponent implements OnInit {
-    EmailStatus = EmailStatus;
-    emailStatus = EmailStatus.Verifying;
+    TokenStatus = TokenStatus;
+    tokenStatus = TokenStatus.Validating;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,11 +32,10 @@ export class VerifyEmailComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Verification successful, you can now login', { keepAfterRouteChange: true });
-                    this.router.navigate(['../login'], { relativeTo: this.route });
+                    this.tokenStatus = TokenStatus.Valid;
                 },
                 error: () => {
-                    this.emailStatus = EmailStatus.Failed;
+                    this.tokenStatus = TokenStatus.Invalid;
                 }
             });
     }
