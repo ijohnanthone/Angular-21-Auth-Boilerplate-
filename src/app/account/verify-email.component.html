@@ -1,0 +1,13 @@
+<h3 class="card-header">Verify Email</h3>
+<div class="card-body">
+    <div *ngIf="tokenStatus === TokenStatus.Validating" class="text-center p-3">
+        <span class="spinner-border spinner-border-sm me-1"></span>
+        Validating token...
+    </div>
+    <div *ngIf="tokenStatus === TokenStatus.Valid" class="alert alert-success">
+        Verification successful, you can now login at the <a routerLink="../login">login</a> page.
+    </div>
+    <div *ngIf="tokenStatus === TokenStatus.Invalid" class="alert alert-danger font-weight-normal">
+        Verification failed, if the token has expired you can request a new one at the <a routerLink="../forgot-password">forgot password</a> page.
+    </div>
+</div>
