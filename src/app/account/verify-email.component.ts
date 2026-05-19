@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
@@ -19,7 +19,8 @@ export class VerifyEmailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private accountService: AccountService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit() {
@@ -33,9 +34,11 @@ export class VerifyEmailComponent implements OnInit {
             .subscribe({
                 next: () => {
                     this.tokenStatus = TokenStatus.Valid;
+                    this.cdr.detectChanges();
                 },
                 error: () => {
                     this.tokenStatus = TokenStatus.Invalid;
+                    this.cdr.detectChanges();
                 }
             });
     }
