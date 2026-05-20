@@ -79,3 +79,11 @@
             </div>
         </div>
     </div>
+
+    <div class="mb-3 mt-2">
+        <button [disabled]="submitting" class="btn btn-primary me-2">
+            <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+            {{ id ? 'Update' : 'Save' }}
+        </button>
+        <a routerLink="/admin/accounts" class="btn btn-secondary">Cancel</a>
+    </div>
