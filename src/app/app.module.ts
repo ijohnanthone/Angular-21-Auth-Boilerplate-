@@ -31,8 +31,8 @@ import { environment } from '@environments/environment';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-        // provider used to create fake backend
-        ...(environment.production ? [] : [fakeBackendProvider])
+        // provider used to create fake backend when requested by environment
+        ...(environment.useFakeBackend ? [fakeBackendProvider] : [])
     ],
     bootstrap: [AppComponent]
 })
