@@ -1,5 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://ipt-2026-backend.onrender.com',
-    useFakeBackend: true
+    apiUrl: 'https://building-a-node-js-typescript-mysql-l91y.onrender.com',
+    useFakeBackend: false
 };
+
